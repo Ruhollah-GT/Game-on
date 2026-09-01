@@ -8,26 +8,45 @@
 <title>GAMEON</title>
 
 <style>
+
+/* =========================
+   GRUND
+========================= */
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: Arial, sans-serif;
+
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
 
   background:
-    radial-gradient(circle at 50% 30%, #300000, #090909 60%, #020202);
+    radial-gradient(
+      circle at 50% 35%,
+      #420000 0%,
+      #210000 25%,
+      #090909 65%,
+      #020202 100%
+    );
 }
 
+
 /* =========================
-   BUBBLOR
+   ANIMERAD BAKGRUND
 ========================= */
 
-.bubbles {
+.background {
   position: fixed;
   inset: 0;
   overflow: hidden;
@@ -35,36 +54,87 @@ body {
   z-index: 0;
 }
 
-.bubbles i {
+.background::before {
+  content: "";
   position: absolute;
+  width: 600px;
+  height: 600px;
+
+  left: 50%;
+  top: 25%;
+
+  transform: translate(-50%, -50%);
+
   border-radius: 50%;
 
-  background: rgba(255, 0, 0, .12);
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,0,0,.18),
+      transparent 65%
+    );
 
-  border: 1px solid rgba(255, 60, 60, .35);
+  filter: blur(40px);
 
-  box-shadow:
-    0 0 15px rgba(255, 0, 0, .35);
-
-  animation: floatBubble 7s infinite ease-in-out;
+  animation: redGlow 5s ease-in-out infinite;
 }
 
-.bubbles i:nth-child(1) {
-  width: 20px;
-  height: 20px;
-  left: 10%;
+@keyframes redGlow {
+
+  0%,100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .6;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================
+   BUBBLOR
+========================= */
+
+.bubbles span {
+  position: absolute;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,0,0,.12);
+
+  border:
+    1px solid rgba(255,60,60,.4);
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.45),
+    inset 0 0 10px rgba(255,255,255,.08);
+
+  animation:
+    float 7s ease-in-out infinite;
+}
+
+.bubbles span:nth-child(1) {
+  width: 18px;
+  height: 18px;
+  left: 8%;
   top: 70%;
 }
 
-.bubbles i:nth-child(2) {
-  width: 12px;
-  height: 12px;
-  left: 25%;
-  top: 20%;
+.bubbles span:nth-child(2) {
+  width: 10px;
+  height: 10px;
+  left: 20%;
+  top: 25%;
   animation-delay: 1s;
 }
 
-.bubbles i:nth-child(3) {
+.bubbles span:nth-child(3) {
   width: 30px;
   height: 30px;
   right: 12%;
@@ -72,160 +142,402 @@ body {
   animation-delay: 2s;
 }
 
-.bubbles i:nth-child(4) {
-  width: 10px;
-  height: 10px;
+.bubbles span:nth-child(4) {
+  width: 14px;
+  height: 14px;
   right: 25%;
   bottom: 15%;
   animation-delay: 3s;
 }
 
-.bubbles i:nth-child(5) {
-  width: 18px;
-  height: 18px;
+.bubbles span:nth-child(5) {
+  width: 22px;
+  height: 22px;
   left: 50%;
   bottom: 10%;
   animation-delay: 1.5s;
 }
 
-@keyframes floatBubble {
+.bubbles span:nth-child(6) {
+  width: 8px;
+  height: 8px;
+  left: 75%;
+  top: 70%;
+  animation-delay: 2.5s;
+}
+
+@keyframes float {
+
   0%,100% {
-    transform: translateY(0) scale(1);
+    transform:
+      translateY(0)
+      scale(1);
+
     opacity: .3;
   }
 
   50% {
-    transform: translateY(-55px) scale(1.4);
+    transform:
+      translateY(-60px)
+      scale(1.5);
+
     opacity: 1;
   }
+
 }
 
+
 /* =========================
-   HUVUD
+   ALLT INNEHÅLL
 ========================= */
 
-.main {
+.app {
   position: relative;
   z-index: 2;
-}
 
-/* =========================
-   LOGGA
-========================= */
+  min-height: 100vh;
 
-.logo-container {
-  display: flex;
-  justify-content: center;
   padding-top: 30px;
 }
 
-.logo {
-  padding: 20px 45px;
 
-  border-radius: 23px;
+/* =========================
+   GAMEON
+========================= */
+
+.logo {
+  width: fit-content;
+
+  margin: auto;
+
+  padding: 18px 38px;
+
+  border-radius: 25px;
 
   background:
     linear-gradient(
       135deg,
-      #350000,
-      #e00000,
-      #580000,
+      #330000,
+      #d00000,
+      #550000,
       #b00000
     );
 
   background-size: 300% 300%;
 
-  border: 1px solid #ff3030;
+  border:
+    1px solid #ff4040;
 
   box-shadow:
     0 0 15px #ff2020,
-    0 0 40px rgba(255, 0, 0, .5),
+    0 0 40px rgba(255,0,0,.55),
     inset 0 0 25px rgba(255,255,255,.08);
 
-  animation: logoGlow 4s ease infinite;
+  animation:
+    logoAnimation 4s ease infinite;
 }
 
-.logo-text {
-  font-size: clamp(45px, 9vw, 80px);
+.logo h1 {
+
+  font-size:
+    clamp(42px, 9vw, 75px);
+
   font-weight: 900;
-  letter-spacing: 8px;
+
+  letter-spacing: 7px;
 
   text-shadow:
     0 0 8px white,
     0 0 20px red,
-    0 0 45px red;
+    0 0 45px red,
+    0 0 75px red;
 }
 
-.logo-text span {
-  color: #ff3030;
+.logo h1 span {
+  color: #ff5555;
 }
+
+@keyframes logoAnimation {
+
+  0%,100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+}
+
 
 /* =========================
-   NAV
+   HOME / GAME
 ========================= */
 
-nav {
-  width: fit-content;
-
-  margin: 25px auto;
-
-  padding: 7px;
+.main-nav {
 
   display: flex;
-  gap: 8px;
 
-  border-radius: 18px;
+  justify-content: center;
 
-  background: rgba(255,255,255,.07);
+  align-items: center;
 
-  border: 1px solid rgba(255,255,255,.16);
+  gap: 12px;
 
-  backdrop-filter: blur(20px);
+  width: fit-content;
+
+  margin: 30px auto;
+
+  padding: 8px;
+
+  border-radius: 25px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid rgba(255,255,255,.14);
+
+  backdrop-filter:
+    blur(25px);
+
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.5);
 }
 
-nav button {
+
+/* =========================
+   BLOB KNAPP
+========================= */
+
+.blob-nav {
+
+  position: relative;
+
+  min-width: 150px;
+
+  padding: 16px 28px;
+
   border: none;
 
-  padding: 13px 30px;
+  outline: none;
 
-  border-radius: 13px;
+  border-radius: 20px;
 
   background: transparent;
 
-  color: #999;
+  color: white;
 
-  font-weight: bold;
+  font-size: 15px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
 
   cursor: pointer;
 
-  transition: .3s;
+  overflow: hidden;
+
+  z-index: 1;
+
+  transition:
+    transform .3s ease;
 }
 
-nav button:hover,
-nav button.active {
-  color: white;
+
+/* RAM */
+
+.blob-nav::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border:
+    2px solid #ff2020;
+
+  border-radius: 20px;
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+
+/* INRE */
+
+.blob-nav__inner {
+
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: 18px;
 
   background:
-    rgba(255,0,0,.28);
+    #100000;
+
+  z-index: -1;
+}
+
+
+/* BLOBS */
+
+.blob-nav__blobs {
+
+  position: absolute;
+
+  inset: 0;
+
+  filter:
+    url("#goo");
+}
+
+.blob-nav__blobs span {
+
+  position: absolute;
+
+  top: 0;
+
+  width: 35%;
+
+  height: 100%;
+
+  background:
+    #e00000;
+
+  border-radius: 50%;
+
+  transform:
+    translateY(120%)
+    scale(1.3);
+
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.blob-nav__blobs span:nth-child(1) {
+  left: -5%;
+}
+
+.blob-nav__blobs span:nth-child(2) {
+  left: 20%;
+  transition-delay: .07s;
+}
+
+.blob-nav__blobs span:nth-child(3) {
+  left: 45%;
+  transition-delay: .14s;
+}
+
+.blob-nav__blobs span:nth-child(4) {
+  left: 70%;
+  transition-delay: .21s;
+}
+
+
+/* HOVER */
+
+.blob-nav:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.05);
+}
+
+.blob-nav:hover
+.blob-nav__blobs span {
+
+  transform:
+    translateY(0)
+    scale(1.4);
+}
+
+
+/* ACTIVE */
+
+.blob-nav.active {
 
   box-shadow:
-    0 0 20px rgba(255,0,0,.35);
+    0 0 15px rgba(255,0,0,.5),
+    0 0 35px rgba(255,0,0,.25);
 }
+
+
+/* GLANS */
+
+.blob-nav::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.2),
+      transparent
+    );
+
+  transform:
+    skewX(-20deg);
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+.blob-nav:hover::after {
+
+  animation:
+    shine .7s ease;
+}
+
+@keyframes shine {
+
+  from {
+    left: -120%;
+  }
+
+  to {
+    left: 140%;
+  }
+
+}
+
 
 /* =========================
    HOME
 ========================= */
 
 #welcome {
-  width: min(900px,92vw);
 
-  margin: 70px auto;
+  width:
+    min(900px, 90%);
+
+  margin:
+    90px auto;
 
   text-align: center;
 }
 
-#welcome h1 {
-  font-size: clamp(35px,7vw,65px);
+#welcome h2 {
+
+  font-size:
+    clamp(35px, 7vw, 65px);
+
+  margin-bottom: 15px;
 
   text-shadow:
     0 0 15px red,
@@ -233,93 +545,112 @@ nav button.active {
 }
 
 #welcome p {
+
   color: #aaa;
+
   font-size: 18px;
 }
 
+
 /* =========================
-   GAME MENY
+   GAME PAGE
 ========================= */
 
 #gamePage {
-  width: min(1000px,92vw);
-
-  margin: 45px auto;
 
   display: none;
+
+  width:
+    min(1050px, 92%);
+
+  margin:
+    45px auto;
 }
 
 .game-title {
+
   text-align: center;
 
-  font-size: 50px;
+  margin-bottom: 30px;
+
+  font-size:
+    clamp(38px, 7vw, 60px);
 
   text-shadow:
     0 0 15px red,
-    0 0 35px red;
+    0 0 40px red;
 }
 
+
+/* =========================
+   SPELKORT
+========================= */
+
 .games {
+
   display: grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(4, 1fr);
 
   gap: 18px;
 }
 
 .game-card {
+
   min-height: 180px;
 
   display: flex;
 
   flex-direction: column;
 
-  align-items: center;
-
   justify-content: center;
 
-  gap: 14px;
+  align-items: center;
 
-  padding: 20px;
+  gap: 15px;
 
-  border-radius: 22px;
+  border:
+    1px solid rgba(255,40,40,.35);
 
-  border: 1px solid rgba(255,50,50,.3);
+  border-radius: 24px;
 
   background:
     linear-gradient(
       145deg,
       rgba(80,0,0,.8),
-      rgba(15,15,15,.9)
+      rgba(10,10,10,.9)
     );
-
-  backdrop-filter: blur(20px);
 
   color: white;
 
   text-decoration: none;
 
-  font-family: Arial,sans-serif;
-
   cursor: pointer;
 
-  transition: .35s;
+  transition:
+    .35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.4);
 }
 
 .game-card:hover {
+
   transform:
     translateY(-10px)
     scale(1.04);
 
-  border-color: #ff3030;
+  border-color:
+    #ff3030;
 
   box-shadow:
-    0 0 25px #ff2020,
-    0 0 50px rgba(255,0,0,.4);
+    0 0 20px red,
+    0 0 50px rgba(255,0,0,.35);
 }
 
-.icon {
+.game-icon {
+
   width: 70px;
   height: 70px;
 
@@ -331,330 +662,149 @@ nav button.active {
   border-radius: 20px;
 
   background:
-    rgba(255,0,0,.17);
+    rgba(255,0,0,.15);
 
-  font-size: 34px;
+  font-size: 35px;
 }
 
-.game-name {
-  font-weight: bold;
+.game-card strong {
+
+  font-size: 17px;
 }
 
-/* =========================
-   NEON SPACE
-========================= */
-
-#neonSpace {
-  display: none;
-
-  width: min(1000px,94vw);
-
-  margin: 30px auto;
-}
-
-.neon-box {
-  padding: 25px;
-
-  border-radius: 28px;
-
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      #300000,
-      #0c0000 55%,
-      #020202
-    );
-
-  border: 1px solid #ff3030;
-
-  box-shadow:
-    0 0 30px rgba(255,0,0,.5),
-    inset 0 0 50px rgba(255,0,0,.12);
-}
-
-.neon-header {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 15px;
-}
-
-.neon-title {
-  margin: 0;
-
-  font-size: clamp(30px,6vw,50px);
-
-  text-shadow:
-    0 0 10px white,
-    0 0 25px red,
-    0 0 50px red;
-}
-
-.stats {
-  display: flex;
-  gap: 10px;
-}
-
-.stat {
-  padding: 10px 14px;
-
-  border-radius: 12px;
-
-  background: rgba(255,0,0,.15);
-
-  border: 1px solid rgba(255,50,50,.3);
-
-  font-weight: bold;
-}
-
-#gameCanvas {
-  display: block;
-
-  width: 100%;
-  height: 560px;
-
-  border-radius: 20px;
-
-  background: #020000;
-
-  border: 1px solid rgba(255,40,40,.6);
-
-  box-shadow:
-    inset 0 0 40px rgba(255,0,0,.15);
-}
-
-.controls {
-  text-align: center;
-
-  margin-top: 12px;
-
-  color: #999;
-
-  font-size: 14px;
-}
-
-/* =========================
-   BACK
-========================= */
-
-.back-button {
-  display: block;
-
-  margin: 18px auto 0;
-
-  padding: 13px 27px;
-
-  border: 1px solid #ff3030;
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #650000,
-      #e00000
-    );
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 18px rgba(255,0,0,.4);
-
-  transition: .3s;
-}
-
-.back-button:hover {
-  transform: scale(1.07);
-
-  box-shadow:
-    0 0 35px red;
-}
-
-/* =========================
-   GAME OVER
-========================= */
-
-.game-over {
-  position: absolute;
-
-  inset: 0;
-
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  background:
-    rgba(0,0,0,.75);
-
-  backdrop-filter: blur(8px);
-
-  border-radius: 20px;
-}
-
-.game-over.show {
-  display: flex;
-}
-
-.game-over h2 {
-  margin: 0;
-
-  font-size: 45px;
-
-  color: #ff3030;
-
-  text-shadow:
-    0 0 15px red,
-    0 0 40px red;
-}
-
-.game-over p {
-  color: #ccc;
-}
-
-.restart {
-  margin-top: 10px;
-
-  padding: 12px 25px;
-
-  border: none;
-
-  border-radius: 13px;
-
-  background: #d00000;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 20px red;
-}
-
-/* Canvas wrapper */
-
-.canvas-wrapper {
-  position: relative;
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes logoGlow {
-  0%,100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
 
 /* =========================
    MOBIL
 ========================= */
 
-@media(max-width:750px) {
+@media(max-width:800px) {
 
   .games {
     grid-template-columns:
       repeat(2,1fr);
   }
 
-  .neon-box {
-    padding: 15px;
-  }
-
-  #gameCanvas {
-    height: 500px;
-  }
 }
 
-@media(max-width:480px) {
+@media(max-width:500px) {
 
-  nav button {
-    padding: 11px 20px;
+  .logo {
+    padding: 15px 20px;
+  }
+
+  .logo h1 {
+    font-size: 42px;
+    letter-spacing: 4px;
+  }
+
+  .main-nav {
+    width: 90%;
+  }
+
+  .blob-nav {
+    min-width: 0;
+    width: 50%;
+    padding: 14px 8px;
+    font-size: 12px;
+  }
+
+  .games {
+    gap: 10px;
   }
 
   .game-card {
-    min-height: 145px;
-  }
-
-  .icon {
-    width: 55px;
-    height: 55px;
-    font-size: 28px;
-  }
-
-  #gameCanvas {
-    height: 430px;
+    min-height: 150px;
   }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- BUBBLOR -->
 
-<div class="bubbles">
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-</div>
+<!-- BAKGRUND -->
 
+<div class="background">
 
-<div class="main">
-
-<!-- LOGGA -->
-
-<div class="logo-container">
-
-  <div class="logo">
-
-    <div class="logo-text">
-      GAME<span>ON</span>
-    </div>
-
+  <div class="bubbles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
 </div>
 
 
-<!-- NAV -->
+<div class="app">
 
-<nav>
+
+<!-- GAMEON -->
+
+<div class="logo">
+
+  <h1>
+    GAME<span>ON</span>
+  </h1>
+
+</div>
+
+
+<!-- HOME / GAME -->
+
+<nav class="main-nav">
+
 
   <button
+    class="blob-nav active"
     id="homeButton"
-    class="active"
     onclick="showHome()">
 
-    🏠 Home
+    🏠 HOME
+
+    <span class="blob-nav__inner">
+
+      <span class="blob-nav__blobs">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </span>
+
+    </span>
 
   </button>
 
+
   <button
+    class="blob-nav"
     id="gameButton"
     onclick="showGames()">
 
-    🎮 Game
+    🎮 GAME
+
+    <span class="blob-nav__inner">
+
+      <span class="blob-nav__blobs">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </span>
+
+    </span>
 
   </button>
+
 
 </nav>
 
@@ -663,9 +813,9 @@ nav button.active {
 
 <section id="welcome">
 
-  <h1>
+  <h2>
     Welcome to GAMEON
-  </h1>
+  </h2>
 
   <p>
     Your place for games, fun and awesome experiences.
@@ -674,15 +824,17 @@ nav button.active {
 </section>
 
 
-<!-- GAME MENY -->
+<!-- GAME -->
 
 <section id="gamePage">
 
   <h1 class="game-title">
-    🎮 Games
+    🎮 GAMES
   </h1>
 
+
   <div class="games">
+
 
     <a
       class="game-card"
@@ -690,11 +842,13 @@ nav button.active {
       target="_blank"
       rel="noopener noreferrer">
 
-      <div class="icon">⭐</div>
-
-      <div class="game-name">
-        CrazyGames
+      <div class="game-icon">
+        ⭐
       </div>
+
+      <strong>
+        CrazyGames
+      </strong>
 
     </a>
 
@@ -705,11 +859,13 @@ nav button.active {
       target="_blank"
       rel="noopener noreferrer">
 
-      <div class="icon">🎮</div>
-
-      <div class="game-name">
-        Xbox
+      <div class="game-icon">
+        🎮
       </div>
+
+      <strong>
+        Xbox
+      </strong>
 
     </a>
 
@@ -720,937 +876,126 @@ nav button.active {
       target="_blank"
       rel="noopener noreferrer">
 
-      <div class="icon">💥</div>
-
-      <div class="game-name">
-        Shell Shockers
+      <div class="game-icon">
+        💥
       </div>
+
+      <strong>
+        Shell Shockers
+      </strong>
 
     </a>
 
-
-    <!-- NEON SPACE -->
 
     <button
       class="game-card"
       onclick="openNeonSpace()">
 
-      <div class="icon">
+      <div class="game-icon">
         🚀
       </div>
 
-      <div class="game-name">
+      <strong>
         Neon Space
-      </div>
+      </strong>
 
     </button>
+
 
   </div>
 
 </section>
 
-
-<!-- NEON SPACE -->
-
-<section id="neonSpace">
-
-  <div class="neon-box">
-
-    <div class="neon-header">
-
-      <h1 class="neon-title">
-        🚀 NEON SPACE
-      </h1>
-
-      <div class="stats">
-
-        <div class="stat">
-          ⭐ <span id="score">0</span>
-        </div>
-
-        <div class="stat">
-          ❤️ <span id="lives">3</span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="canvas-wrapper">
-
-      <canvas id="gameCanvas"></canvas>
-
-
-      <!-- GAME OVER -->
-
-      <div
-        id="gameOver"
-        class="game-over">
-
-        <h2>
-          GAME OVER
-        </h2>
-
-        <p>
-          Score: <span id="finalScore">0</span>
-        </p>
-
-        <button
-          class="restart"
-          onclick="restartGame()">
-
-          🔄 Play Again
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="controls">
-      🔴 Undvik de röda cirklarna &nbsp; • &nbsp;
-      ⭐ Samla stjärnorna &nbsp; • &nbsp;
-      ← → eller A / D
-    </div>
-
-
-    <button
-      class="back-button"
-      onclick="closeNeonSpace()">
-
-      ← Back to Games
-
-    </button>
-
-  </div>
-
-</section>
 
 </div>
 
 
+<!-- GOO FILTER -->
+
+<svg width="0" height="0">
+
+  <defs>
+
+    <filter id="goo">
+
+      <feGaussianBlur
+        in="SourceGraphic"
+        stdDeviation="10"
+        result="blur">
+      </feGaussianBlur>
+
+      <feColorMatrix
+        in="blur"
+        mode="matrix"
+        values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 21 -7"
+        result="goo">
+      </feColorMatrix>
+
+      <feBlend
+        in2="goo"
+        in="SourceGraphic">
+      </feBlend>
+
+    </filter>
+
+  </defs>
+
+</svg>
+
+
 <script>
 
-/* =================================
-   SIDOR
-================================= */
+/* HOME */
 
 function showHome() {
 
-  document.getElementById("welcome").style.display = "block";
+  document.getElementById("welcome")
+    .style.display = "block";
 
-  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("gamePage")
+    .style.display = "none";
 
-  document.getElementById("neonSpace").style.display = "none";
+  document.getElementById("homeButton")
+    .classList.add("active");
 
-  document.getElementById("homeButton").classList.add("active");
+  document.getElementById("gameButton")
+    .classList.remove("active");
 
-  document.getElementById("gameButton").classList.remove("active");
-
-  stopGame();
 }
 
+
+/* GAME */
 
 function showGames() {
 
-  document.getElementById("welcome").style.display = "none";
+  document.getElementById("welcome")
+    .style.display = "none";
 
-  document.getElementById("gamePage").style.display = "block";
+  document.getElementById("gamePage")
+    .style.display = "block";
 
-  document.getElementById("neonSpace").style.display = "none";
+  document.getElementById("homeButton")
+    .classList.remove("active");
 
-  document.getElementById("homeButton").classList.remove("active");
+  document.getElementById("gameButton")
+    .classList.add("active");
 
-  document.getElementById("gameButton").classList.add("active");
-
-  stopGame();
 }
 
 
-/* =================================
-   NEON SPACE
-================================= */
+/* NEON SPACE */
 
 function openNeonSpace() {
 
-  document.getElementById("welcome").style.display = "none";
-
-  document.getElementById("gamePage").style.display = "none";
-
-  document.getElementById("neonSpace").style.display = "block";
-
-  document.getElementById("homeButton").classList.remove("active");
-
-  document.getElementById("gameButton").classList.add("active");
-
-  startGame();
-}
-
-
-function closeNeonSpace() {
-
-  stopGame();
-
-  document.getElementById("neonSpace").style.display = "none";
-
-  document.getElementById("gamePage").style.display = "block";
-}
-
-
-/* =================================
-   SPELET
-================================= */
-
-const canvas =
-  document.getElementById("gameCanvas");
-
-const ctx =
-  canvas.getContext("2d");
-
-let player;
-
-let enemies = [];
-
-let stars = [];
-
-let score = 0;
-
-let lives = 3;
-
-let keys = {};
-
-let gameRunning = false;
-
-let animationFrame;
-
-
-/* =================================
-   CANVAS
-================================= */
-
-function resizeCanvas() {
-
-  const rect =
-    canvas.getBoundingClientRect();
-
-  const dpr =
-    window.devicePixelRatio || 1;
-
-  canvas.width =
-    rect.width * dpr;
-
-  canvas.height =
-    rect.height * dpr;
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-}
-
-
-/* =================================
-   SPELARE
-================================= */
-
-function resetPlayer() {
-
-  player = {
-
-    x: canvas.clientWidth / 2,
-
-    y: canvas.clientHeight - 65,
-
-    width: 42,
-
-    speed: 7
-
-  };
-}
-
-
-/* =================================
-   FIENDE
-================================= */
-
-function createEnemy() {
-
-  enemies.push({
-
-    x:
-      25 +
-      Math.random() *
-      (canvas.clientWidth - 50),
-
-    y: -30,
-
-    radius:
-      14 +
-      Math.random() * 10,
-
-    speed:
-      2.5 +
-      Math.random() * 2.5
-
-  });
-}
-
-
-/* =================================
-   STJÄRNA
-================================= */
-
-function createStar() {
-
-  stars.push({
-
-    x:
-      20 +
-      Math.random() *
-      (canvas.clientWidth - 40),
-
-    y: -20,
-
-    radius: 7,
-
-    speed:
-      2 +
-      Math.random() * 2
-
-  });
-}
-
-
-/* =================================
-   TANGENTER
-================================= */
-
-document.addEventListener(
-  "keydown",
-  function(e) {
-
-    keys[e.key.toLowerCase()] = true;
-
-  }
-);
-
-document.addEventListener(
-  "keyup",
-  function(e) {
-
-    keys[e.key.toLowerCase()] = false;
-
-  }
-);
-
-
-/* =================================
-   UPPDATERA
-================================= */
-
-function updateGame() {
-
-  if (!gameRunning) return;
-
-
-  /* Rörelse */
-
-  if (
-    keys["arrowleft"] ||
-    keys["a"]
-  ) {
-
-    player.x -= player.speed;
-
-  }
-
-
-  if (
-    keys["arrowright"] ||
-    keys["d"]
-  ) {
-
-    player.x += player.speed;
-
-  }
-
-
-  /* Begränsa */
-
-  player.x =
-    Math.max(
-      player.width / 2,
-      Math.min(
-        canvas.clientWidth -
-        player.width / 2,
-        player.x
-      )
-    );
-
-
-  /* =========================
-     FIENDER
-  ========================= */
-
-  for (
-    let i = enemies.length - 1;
-    i >= 0;
-    i--
-  ) {
-
-    const enemy =
-      enemies[i];
-
-    enemy.y += enemy.speed;
-
-
-    /* Kollision */
-
-    const dx =
-      enemy.x - player.x;
-
-    const dy =
-      enemy.y - player.y;
-
-    const distance =
-      Math.sqrt(
-        dx * dx +
-        dy * dy
-      );
-
-
-    if (
-      distance <
-      enemy.radius + 20
-    ) {
-
-      lives--;
-
-      document.getElementById(
-        "lives"
-      ).textContent = lives;
-
-      enemies.splice(i,1);
-
-
-      if (lives <= 0) {
-
-        endGame();
-
-        return;
-
-      }
-
-      continue;
-
-    }
-
-
-    /* Försvunnen */
-
-    if (
-      enemy.y >
-      canvas.clientHeight + 40
-    ) {
-
-      enemies.splice(i,1);
-
-    }
-
-  }
-
-
-  /* =========================
-     STJÄRNOR
-  ========================= */
-
-  for (
-    let i = stars.length - 1;
-    i >= 0;
-    i--
-  ) {
-
-    const star =
-      stars[i];
-
-    star.y += star.speed;
-
-
-    const dx =
-      star.x - player.x;
-
-    const dy =
-      star.y - player.y;
-
-    const distance =
-      Math.sqrt(
-        dx * dx +
-        dy * dy
-      );
-
-
-    if (distance < 28) {
-
-      score += 10;
-
-      document.getElementById(
-        "score"
-      ).textContent = score;
-
-      stars.splice(i,1);
-
-      continue;
-
-    }
-
-
-    if (
-      star.y >
-      canvas.clientHeight + 30
-    ) {
-
-      stars.splice(i,1);
-
-    }
-
-  }
-
-
-  /* Nya fiender */
-
-  if (
-    Math.random() < .025
-  ) {
-
-    createEnemy();
-
-  }
-
-
-  /* Nya stjärnor */
-
-  if (
-    Math.random() < .035
-  ) {
-
-    createStar();
-
-  }
+  alert("Neon Space kommer här!");
 
 }
-
-
-/* =================================
-   RITA
-================================= */
-
-function drawGame() {
-
-  const w =
-    canvas.clientWidth;
-
-  const h =
-    canvas.clientHeight;
-
-
-  /* Bakgrund */
-
-  ctx.fillStyle =
-    "#030000";
-
-  ctx.fillRect(
-    0,
-    0,
-    w,
-    h
-  );
-
-
-  /* Bakgrundsstjärnor */
-
-  for (
-    let i = 0;
-    i < 100;
-    i++
-  ) {
-
-    const x =
-      (i * 83) % w;
-
-    const y =
-      (i * 47) % h;
-
-    ctx.fillStyle =
-      "rgba(255,100,100,.45)";
-
-    ctx.fillRect(
-      x,
-      y,
-      2,
-      2
-    );
-
-  }
-
-
-  /* =========================
-     RÖDA FIENDER
-  ========================= */
-
-  for (
-    const enemy of enemies
-  ) {
-
-    ctx.save();
-
-    ctx.shadowBlur = 25;
-
-    ctx.shadowColor = "#ff0000";
-
-    ctx.fillStyle = "#ff1010";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      enemy.x,
-      enemy.y,
-      enemy.radius,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-
-    /* Innercirkel */
-
-    ctx.shadowBlur = 0;
-
-    ctx.fillStyle =
-      "rgba(120,0,0,.8)";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      enemy.x,
-      enemy.y,
-      enemy.radius * .45,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fill();
-
-    ctx.restore();
-
-  }
-
-
-  /* =========================
-     STJÄRNOR
-  ========================= */
-
-  for (
-    const star of stars
-  ) {
-
-    ctx.save();
-
-    ctx.translate(
-      star.x,
-      star.y
-    );
-
-    ctx.shadowBlur = 20;
-
-    ctx.shadowColor = "#ffffff";
-
-    ctx.fillStyle = "white";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      0,
-      -star.radius
-    );
-
-    ctx.lineTo(
-      star.radius * .35,
-      -star.radius * .35
-    );
-
-    ctx.lineTo(
-      star.radius,
-      0
-    );
-
-    ctx.lineTo(
-      star.radius * .35,
-      star.radius * .35
-    );
-
-    ctx.lineTo(
-      0,
-      star.radius
-    );
-
-    ctx.lineTo(
-      -star.radius * .35,
-      star.radius * .35
-    );
-
-    ctx.lineTo(
-      -star.radius,
-      0
-    );
-
-    ctx.lineTo(
-      -star.radius * .35,
-      -star.radius * .35
-    );
-
-    ctx.closePath();
-
-    ctx.fill();
-
-    ctx.restore();
-
-  }
-
-
-  /* =========================
-     RYMD-SKEPP
-  ========================= */
-
-  ctx.save();
-
-  ctx.translate(
-    player.x,
-    player.y
-  );
-
-
-  /* Glow */
-
-  ctx.shadowBlur = 25;
-
-  ctx.shadowColor = "#ff2020";
-
-
-  /* Eld */
-
-  ctx.fillStyle =
-    "#ff7200";
-
-  ctx.beginPath();
-
-  ctx.moveTo(-8,17);
-
-  ctx.lineTo(0,35);
-
-  ctx.lineTo(8,17);
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* Skepp */
-
-  ctx.fillStyle =
-    "#ff3030";
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    -25
-  );
-
-  ctx.lineTo(
-    21,
-    20
-  );
-
-  ctx.lineTo(
-    0,
-    12
-  );
-
-  ctx.lineTo(
-    -21,
-    20
-  );
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* Fönster */
-
-  ctx.shadowBlur = 10;
-
-  ctx.shadowColor = "white";
-
-  ctx.fillStyle =
-    "white";
-
-  ctx.beginPath();
-
-  ctx.arc(
-    0,
-    -8,
-    6,
-    0,
-    Math.PI * 2
-  );
-
-  ctx.fill();
-
-  ctx.restore();
-
-}
-
-
-/* =================================
-   GAME LOOP
-================================= */
-
-function gameLoop() {
-
-  if (!gameRunning) return;
-
-  updateGame();
-
-  drawGame();
-
-  animationFrame =
-    requestAnimationFrame(
-      gameLoop
-    );
-
-}
-
-
-/* =================================
-   START
-================================= */
-
-function startGame() {
-
-  resizeCanvas();
-
-  resetPlayer();
-
-  enemies = [];
-
-  stars = [];
-
-  score = 0;
-
-  lives = 3;
-
-  document.getElementById(
-    "score"
-  ).textContent = "0";
-
-  document.getElementById(
-    "lives"
-  ).textContent = "3";
-
-  document.getElementById(
-    "gameOver"
-  ).classList.remove("show");
-
-  gameRunning = true;
-
-  cancelAnimationFrame(
-    animationFrame
-  );
-
-  gameLoop();
-
-}
-
-
-/* =================================
-   GAME OVER
-================================= */
-
-function endGame() {
-
-  gameRunning = false;
-
-  document.getElementById(
-    "finalScore"
-  ).textContent = score;
-
-  document.getElementById(
-    "gameOver"
-  ).classList.add("show");
-
-}
-
-
-/* =================================
-   STARTA OM
-================================= */
-
-function restartGame() {
-
-  startGame();
-
-}
-
-
-/* =================================
-   STOPPA
-================================= */
-
-function stopGame() {
-
-  gameRunning = false;
-
-  cancelAnimationFrame(
-    animationFrame
-  );
-
-}
-
-
-/* =================================
-   RESIZE
-================================= */
-
-window.addEventListener(
-  "resize",
-  function() {
-
-    if (gameRunning) {
-
-      resizeCanvas();
-
-      resetPlayer();
-
-    }
-
-  }
-);
 
 </script>
 
 </body>
 </html>
-
-
-
-
-
-</style>
