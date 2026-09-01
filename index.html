@@ -1,17 +1,16 @@
-
-
 <!DOCTYPE html>
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GAMEON</title>
 
 <style>
 
-/* =========================
-   GRUND
-========================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
   box-sizing: border-box;
@@ -19,32 +18,26 @@
   padding: 0;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-}
-
 body {
   min-height: 100vh;
-  overflow-x: hidden;
-
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  overflow-x: hidden;
 
   background:
     radial-gradient(
-      circle at 50% 35%,
-      #420000 0%,
-      #210000 25%,
+      circle at 50% 20%,
+      #4d0000 0%,
+      #240000 25%,
       #090909 65%,
       #020202 100%
     );
 }
 
 
-/* =========================
-   ANIMERAD BAKGRUND
-========================= */
+/* =====================================================
+   BAKGRUND
+===================================================== */
 
 .background {
   position: fixed;
@@ -57,8 +50,9 @@ body {
 .background::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+
+  width: 550px;
+  height: 550px;
 
   left: 50%;
   top: 25%;
@@ -70,16 +64,16 @@ body {
   background:
     radial-gradient(
       circle,
-      rgba(255,0,0,.18),
-      transparent 65%
+      rgba(255,0,0,.20),
+      transparent 70%
     );
 
-  filter: blur(40px);
+  filter: blur(50px);
 
-  animation: redGlow 5s ease-in-out infinite;
+  animation: glow 5s ease-in-out infinite;
 }
 
-@keyframes redGlow {
+@keyframes glow {
 
   0%,100% {
     transform: translate(-50%, -50%) scale(1);
@@ -90,106 +84,96 @@ body {
     transform: translate(-50%, -50%) scale(1.3);
     opacity: 1;
   }
-
 }
 
 
-/* =========================
-   BUBBLOR
-========================= */
+/* =====================================================
+   PARTICLES
+===================================================== */
 
-.bubbles span {
+.particles span {
   position: absolute;
 
   display: block;
 
+  width: 7px;
+  height: 7px;
+
   border-radius: 50%;
 
-  background:
-    rgba(255,0,0,.12);
-
-  border:
-    1px solid rgba(255,60,60,.4);
+  background: #ff2020;
 
   box-shadow:
-    0 0 15px rgba(255,0,0,.45),
-    inset 0 0 10px rgba(255,255,255,.08);
+    0 0 10px #ff2020,
+    0 0 25px red;
 
-  animation:
-    float 7s ease-in-out infinite;
+  animation: particle 6s infinite ease-in-out;
 }
 
-.bubbles span:nth-child(1) {
-  width: 18px;
-  height: 18px;
+.particles span:nth-child(1) {
   left: 8%;
   top: 70%;
 }
 
-.bubbles span:nth-child(2) {
-  width: 10px;
-  height: 10px;
-  left: 20%;
-  top: 25%;
+.particles span:nth-child(2) {
+  left: 18%;
+  top: 20%;
   animation-delay: 1s;
 }
 
-.bubbles span:nth-child(3) {
-  width: 30px;
-  height: 30px;
-  right: 12%;
-  top: 30%;
+.particles span:nth-child(3) {
+  left: 82%;
+  top: 25%;
   animation-delay: 2s;
 }
 
-.bubbles span:nth-child(4) {
-  width: 14px;
-  height: 14px;
-  right: 25%;
-  bottom: 15%;
+.particles span:nth-child(4) {
+  left: 90%;
+  top: 70%;
   animation-delay: 3s;
 }
 
-.bubbles span:nth-child(5) {
-  width: 22px;
-  height: 22px;
+.particles span:nth-child(5) {
   left: 50%;
-  bottom: 10%;
+  top: 80%;
   animation-delay: 1.5s;
 }
 
-.bubbles span:nth-child(6) {
-  width: 8px;
-  height: 8px;
-  left: 75%;
-  top: 70%;
+.particles span:nth-child(6) {
+  left: 65%;
+  top: 10%;
   animation-delay: 2.5s;
 }
 
-@keyframes float {
+.particles span:nth-child(7) {
+  left: 35%;
+  top: 50%;
+  animation-delay: 3.5s;
+}
+
+.particles span:nth-child(8) {
+  left: 75%;
+  top: 50%;
+  animation-delay: 4s;
+}
+
+@keyframes particle {
 
   0%,100% {
-    transform:
-      translateY(0)
-      scale(1);
-
-    opacity: .3;
+    transform: translateY(0) scale(.7);
+    opacity: .25;
   }
 
   50% {
-    transform:
-      translateY(-60px)
-      scale(1.5);
-
+    transform: translateY(-60px) scale(1.5);
     opacity: 1;
   }
-
 }
 
 
-/* =========================
-   ALLT INNEHÅLL
-========================= */
+/* =====================================================
+   APP
+===================================================== */
 
 .app {
   position: relative;
@@ -197,50 +181,47 @@ body {
 
   min-height: 100vh;
 
-  padding-top: 30px;
+  padding:
+    30px 20px 70px;
 }
 
 
-/* =========================
-   GAMEON
-========================= */
+/* =====================================================
+   GAMEON LOGO
+===================================================== */
 
 .logo {
-  width: fit-content;
+
+  width: max-content;
 
   margin: auto;
 
-  padding: 18px 38px;
+  padding:
+    14px 30px;
 
   border-radius: 25px;
 
   background:
-    linear-gradient(
-      135deg,
-      #330000,
-      #d00000,
-      #550000,
-      #b00000
-    );
-
-  background-size: 300% 300%;
+    rgba(30,0,0,.55);
 
   border:
-    1px solid #ff4040;
+    1px solid rgba(255,50,50,.55);
+
+  backdrop-filter:
+    blur(20px);
 
   box-shadow:
-    0 0 15px #ff2020,
-    0 0 40px rgba(255,0,0,.55),
-    inset 0 0 25px rgba(255,255,255,.08);
+    0 0 20px rgba(255,0,0,.5),
+    inset 0 0 25px rgba(255,0,0,.08);
 
   animation:
-    logoAnimation 4s ease infinite;
+    logoFloat 4s ease-in-out infinite;
 }
 
 .logo h1 {
 
   font-size:
-    clamp(42px, 9vw, 75px);
+    clamp(42px, 8vw, 75px);
 
   font-weight: 900;
 
@@ -254,37 +235,35 @@ body {
 }
 
 .logo h1 span {
-  color: #ff5555;
+  color: #ff3030;
 }
 
-@keyframes logoAnimation {
+@keyframes logoFloat {
 
   0%,100% {
-    background-position: 0% 50%;
+    transform: translateY(0);
   }
 
   50% {
-    background-position: 100% 50%;
+    transform: translateY(-5px);
   }
-
 }
 
 
-/* =========================
-   HOME / GAME
-========================= */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 .main-nav {
 
   display: flex;
 
   justify-content: center;
-
   align-items: center;
 
   gap: 12px;
 
-  width: fit-content;
+  width: max-content;
 
   margin: 30px auto;
 
@@ -306,9 +285,9 @@ body {
 }
 
 
-/* =========================
-   BLOB KNAPP
-========================= */
+/* =====================================================
+   BLOB BUTTON
+===================================================== */
 
 .blob-nav {
 
@@ -316,10 +295,10 @@ body {
 
   min-width: 150px;
 
-  padding: 16px 28px;
+  padding:
+    16px 25px;
 
   border: none;
-
   outline: none;
 
   border-radius: 20px;
@@ -328,8 +307,7 @@ body {
 
   color: white;
 
-  font-size: 15px;
-
+  font-size: 14px;
   font-weight: 900;
 
   letter-spacing: 2px;
@@ -338,14 +316,21 @@ body {
 
   overflow: hidden;
 
-  z-index: 1;
-
-  transition:
-    transform .3s ease;
+  transition: .3s;
 }
 
+.blob-nav:hover {
 
-/* RAM */
+  transform:
+    translateY(-4px)
+    scale(1.05);
+}
+
+.blob-nav:active {
+
+  transform:
+    scale(.94);
+}
 
 .blob-nav::before {
 
@@ -360,15 +345,12 @@ body {
 
   border-radius: 20px;
 
-  z-index: 3;
+  z-index: 4;
 
   pointer-events: none;
 }
 
-
-/* INRE */
-
-.blob-nav__inner {
+.blob-inner {
 
   position: absolute;
 
@@ -378,158 +360,91 @@ body {
 
   border-radius: 18px;
 
-  background:
-    #100000;
+  background: #100000;
 
   z-index: -1;
 }
 
-
-/* BLOBS */
-
-.blob-nav__blobs {
+.blobs {
 
   position: absolute;
 
   inset: 0;
 
-  filter:
-    url("#goo");
+  filter: url("#goo");
 }
 
-.blob-nav__blobs span {
+.blobs span {
 
   position: absolute;
 
   top: 0;
 
   width: 35%;
-
   height: 100%;
 
-  background:
-    #e00000;
-
   border-radius: 50%;
+
+  background: #e00000;
 
   transform:
     translateY(120%)
     scale(1.3);
 
   transition:
-    transform .45s cubic-bezier(.2,.8,.2,1);
+    .45s cubic-bezier(.2,.8,.2,1);
 }
 
-.blob-nav__blobs span:nth-child(1) {
+.blobs span:nth-child(1) {
   left: -5%;
 }
 
-.blob-nav__blobs span:nth-child(2) {
+.blobs span:nth-child(2) {
   left: 20%;
   transition-delay: .07s;
 }
 
-.blob-nav__blobs span:nth-child(3) {
+.blobs span:nth-child(3) {
   left: 45%;
   transition-delay: .14s;
 }
 
-.blob-nav__blobs span:nth-child(4) {
+.blobs span:nth-child(4) {
   left: 70%;
   transition-delay: .21s;
 }
 
-
-/* HOVER */
-
-.blob-nav:hover {
-
-  transform:
-    translateY(-3px)
-    scale(1.05);
-}
-
-.blob-nav:hover
-.blob-nav__blobs span {
+.blob-nav:hover .blobs span {
 
   transform:
     translateY(0)
     scale(1.4);
 }
 
-
-/* ACTIVE */
-
 .blob-nav.active {
 
   box-shadow:
-    0 0 15px rgba(255,0,0,.5),
-    0 0 35px rgba(255,0,0,.25);
+    0 0 15px rgba(255,0,0,.6),
+    0 0 35px rgba(255,0,0,.3);
 }
 
 
-/* GLANS */
-
-.blob-nav::after {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: -120%;
-
-  width: 70%;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.2),
-      transparent
-    );
-
-  transform:
-    skewX(-20deg);
-
-  z-index: 4;
-
-  pointer-events: none;
-}
-
-.blob-nav:hover::after {
-
-  animation:
-    shine .7s ease;
-}
-
-@keyframes shine {
-
-  from {
-    left: -120%;
-  }
-
-  to {
-    left: 140%;
-  }
-
-}
-
-
-/* =========================
+/* =====================================================
    HOME
-========================= */
+===================================================== */
 
 #welcome {
 
   width:
-    min(900px, 90%);
+    min(900px, 92%);
 
   margin:
     90px auto;
 
   text-align: center;
+
+  animation:
+    appear .6s ease;
 }
 
 #welcome h2 {
@@ -541,7 +456,7 @@ body {
 
   text-shadow:
     0 0 15px red,
-    0 0 35px red;
+    0 0 40px red;
 }
 
 #welcome p {
@@ -552,75 +467,312 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    GAME PAGE
-========================= */
+===================================================== */
 
 #gamePage {
 
   display: none;
 
   width:
-    min(1050px, 92%);
+    min(1150px, 94%);
 
   margin:
-    45px auto;
+    50px auto;
+
+  animation:
+    appear .5s ease;
 }
 
-.game-title {
+.game-heading {
 
   text-align: center;
 
-  margin-bottom: 30px;
-
   font-size:
-    clamp(38px, 7vw, 60px);
+    clamp(35px, 6vw, 55px);
+
+  margin-bottom: 10px;
 
   text-shadow:
     0 0 15px red,
     0 0 40px red;
 }
 
+.subtitle {
 
-/* =========================
-   SPELKORT
-========================= */
+  text-align: center;
+
+  color: #888;
+
+  margin-bottom: 35px;
+}
+
+
+/* =====================================================
+   FEATURED GAME
+===================================================== */
+
+.featured {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  min-height: 230px;
+
+  margin-bottom: 30px;
+
+  padding: 35px;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(110,0,0,.8),
+      rgba(25,0,0,.75),
+      rgba(5,5,5,.9)
+    );
+
+  border:
+    1px solid rgba(255,50,50,.45);
+
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.45),
+    0 0 35px rgba(255,0,0,.15);
+}
+
+.featured::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -70px;
+  top: -80px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,0,0,.2);
+
+  filter: blur(40px);
+}
+
+.featured-text {
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.featured-label {
+
+  color: #ff4040;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+}
+
+.featured h2 {
+
+  margin:
+    10px 0;
+
+  font-size: 40px;
+
+  text-shadow:
+    0 0 15px red;
+}
+
+.featured p {
+
+  color: #aaa;
+
+  margin-bottom: 20px;
+}
+
+.featured-icon {
+
+  position: relative;
+
+  z-index: 2;
+
+  font-size: 100px;
+
+  filter:
+    drop-shadow(0 0 20px red);
+
+  animation:
+    rocket 2s ease-in-out infinite;
+}
+
+@keyframes rocket {
+
+  0%,100% {
+    transform:
+      translateY(0)
+      rotate(-5deg);
+  }
+
+  50% {
+    transform:
+      translateY(-15px)
+      rotate(5deg);
+  }
+}
+
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+.play-btn {
+
+  padding:
+    13px 22px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background:
+    #e00000;
+
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.6);
+
+  transition: .3s;
+}
+
+.play-btn:hover {
+
+  transform:
+    scale(1.08);
+
+  box-shadow:
+    0 0 25px red,
+    0 0 50px rgba(255,0,0,.5);
+}
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+.categories {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 25px;
+}
+
+.category {
+
+  padding:
+    9px 15px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  border:
+    1px solid rgba(255,255,255,.1);
+
+  color: #aaa;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.category:hover,
+.category.active {
+
+  color: white;
+
+  border-color:
+    #ff3030;
+
+  background:
+    rgba(255,0,0,.15);
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.25);
+}
+
+
+/* =====================================================
+   GAME CARDS
+===================================================== */
 
 .games {
 
   display: grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
+    repeat(4,1fr);
 
   gap: 18px;
 }
 
 .game-card {
 
-  min-height: 180px;
+  position: relative;
+
+  min-height: 210px;
 
   display: flex;
 
   flex-direction: column;
 
-  justify-content: center;
-
   align-items: center;
 
-  gap: 15px;
+  justify-content: center;
 
-  border:
-    1px solid rgba(255,40,40,.35);
+  gap: 12px;
 
-  border-radius: 24px;
+  border-radius: 25px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(80,0,0,.8),
-      rgba(10,10,10,.9)
+      rgba(65,0,0,.75),
+      rgba(8,8,8,.9)
     );
+
+  border:
+    1px solid rgba(255,50,50,.25);
 
   color: white;
 
@@ -628,94 +780,459 @@ body {
 
   cursor: pointer;
 
-  transition:
-    .35s ease;
+  overflow: hidden;
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.4);
+  transition: .35s;
+}
+
+.game-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,0,0,.12);
+
+  filter:
+    blur(25px);
+
+  transition: .4s;
 }
 
 .game-card:hover {
 
   transform:
     translateY(-10px)
-    scale(1.04);
+    scale(1.03);
 
   border-color:
     #ff3030;
 
   box-shadow:
-    0 0 20px red,
-    0 0 50px rgba(255,0,0,.35);
+    0 0 20px rgba(255,0,0,.5),
+    0 15px 40px rgba(0,0,0,.5);
+}
+
+.game-card:hover::before {
+
+  transform:
+    scale(2);
+
+  background:
+    rgba(255,0,0,.2);
 }
 
 .game-icon {
 
-  width: 70px;
-  height: 70px;
+  position: relative;
+
+  width: 75px;
+  height: 75px;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  border-radius: 20px;
+  border-radius: 22px;
 
   background:
-    rgba(255,0,0,.15);
+    rgba(255,0,0,.12);
 
-  font-size: 35px;
+  border:
+    1px solid rgba(255,50,50,.25);
+
+  font-size: 36px;
+
+  transition: .35s;
+}
+
+.game-card:hover .game-icon {
+
+  transform:
+    translateY(-5px)
+    rotate(-5deg)
+    scale(1.1);
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,.4);
 }
 
 .game-card strong {
 
+  position: relative;
+
   font-size: 17px;
 }
 
+.card-play {
 
-/* =========================
+  position: relative;
+
+  color: #ff4040;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   OWNER PAGE
+===================================================== */
+
+#ownerPage {
+
+  display: none;
+
+  width:
+    min(850px, 92%);
+
+  margin:
+    60px auto;
+
+  animation:
+    appear .6s ease;
+}
+
+.owner-card {
+
+  position: relative;
+
+  padding:
+    45px 35px;
+
+  text-align: center;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(70,0,0,.78),
+      rgba(10,10,10,.92)
+    );
+
+  border:
+    1px solid rgba(255,50,50,.45);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5),
+    0 0 35px rgba(255,0,0,.2);
+
+  backdrop-filter:
+    blur(20px);
+
+  overflow: hidden;
+}
+
+.owner-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  left: 50%;
+  top: -150px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,0,0,.2);
+
+  filter:
+    blur(45px);
+}
+
+
+/* AVATAR */
+
+.owner-avatar {
+
+  position: relative;
+
+  width: 95px;
+  height: 95px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ff3030,
+      #650000
+    );
+
+  border:
+    2px solid #ff5555;
+
+  font-size: 45px;
+
+  box-shadow:
+    0 0 20px red,
+    0 0 50px rgba(255,0,0,.4);
+
+  animation:
+    ownerFloat 3s ease-in-out infinite;
+}
+
+@keyframes ownerFloat {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* BADGE */
+
+.owner-badge {
+
+  position: relative;
+
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding:
+    7px 14px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(255,0,0,.12);
+
+  border:
+    1px solid rgba(255,50,50,.35);
+
+  color:
+    #ff5555;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+}
+
+
+/* NAMN */
+
+.owner-card h1 {
+
+  position: relative;
+
+  margin-top: 15px;
+
+  font-size:
+    clamp(35px,7vw,55px);
+
+  letter-spacing: 5px;
+
+  text-shadow:
+    0 0 10px white,
+    0 0 25px red,
+    0 0 50px red;
+}
+
+
+/* INFO */
+
+.owner-description {
+
+  position: relative;
+
+  max-width: 600px;
+
+  margin:
+    15px auto 30px;
+
+  color: #aaa;
+
+  line-height: 1.7;
+
+  font-size: 15px;
+}
+
+
+/* INFO CARDS */
+
+.owner-info {
+
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 12px;
+}
+
+.owner-info div {
+
+  padding:
+    20px 10px;
+
+  border-radius: 20px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid rgba(255,50,50,.2);
+
+  transition: .3s;
+}
+
+.owner-info div:hover {
+
+  transform:
+    translateY(-6px);
+
+  background:
+    rgba(255,0,0,.1);
+
+  border-color:
+    #ff3030;
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,.25);
+}
+
+.owner-info span {
+
+  display: block;
+
+  font-size: 28px;
+
+  margin-bottom: 8px;
+}
+
+.owner-info strong {
+
+  display: block;
+
+  font-size: 14px;
+}
+
+.owner-info small {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color: #777;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes appear {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(20px)
+      scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =====================================================
    MOBIL
-========================= */
+===================================================== */
 
-@media(max-width:800px) {
+@media(max-width:850px) {
 
   .games {
     grid-template-columns:
       repeat(2,1fr);
   }
 
+  .featured {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
 }
 
-@media(max-width:500px) {
-
-  .logo {
-    padding: 15px 20px;
-  }
-
-  .logo h1 {
-    font-size: 42px;
-    letter-spacing: 4px;
-  }
+@media(max-width:600px) {
 
   .main-nav {
-    width: 90%;
+    width: 100%;
   }
 
   .blob-nav {
     min-width: 0;
-    width: 50%;
-    padding: 14px 8px;
-    font-size: 12px;
+    width: 33.33%;
+    padding: 14px 5px;
+    font-size: 11px;
   }
 
+  .owner-info {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-card {
+    padding: 35px 20px;
+  }
+}
+
+@media(max-width:450px) {
+
   .games {
-    gap: 10px;
+    grid-template-columns:
+      1fr 1fr;
   }
 
   .game-card {
-    min-height: 150px;
+    min-height: 170px;
   }
 
+  .game-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .game-card strong {
+    font-size: 14px;
+  }
 }
 
 </style>
@@ -725,192 +1242,419 @@ body {
 <body>
 
 
-<!-- BAKGRUND -->
+<!-- =====================================================
+     BAKGRUND
+===================================================== -->
 
 <div class="background">
 
-  <div class="bubbles">
+  <div class="particles">
+
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     <span></span>
+    <span></span>
+    <span></span>
+
   </div>
 
 </div>
 
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div class="app">
 
 
-<!-- GAMEON -->
+  <!-- GAMEON -->
 
-<div class="logo">
+  <div class="logo">
 
-  <h1>
-    GAME<span>ON</span>
-  </h1>
+    <h1>
+      GAME<span>ON</span>
+    </h1>
 
-</div>
-
-
-<!-- HOME / GAME -->
-
-<nav class="main-nav">
+  </div>
 
 
-  <button
-    class="blob-nav active"
-    id="homeButton"
-    onclick="showHome()">
+  <!-- ===================================================
+       NAV
+  ==================================================== -->
 
-    🏠 HOME
-
-    <span class="blob-nav__inner">
-
-      <span class="blob-nav__blobs">
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-      </span>
-
-    </span>
-
-  </button>
+  <nav class="main-nav">
 
 
-  <button
-    class="blob-nav"
-    id="gameButton"
-    onclick="showGames()">
-
-    🎮 GAME
-
-    <span class="blob-nav__inner">
-
-      <span class="blob-nav__blobs">
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-      </span>
-
-    </span>
-
-  </button>
-
-
-</nav>
-
-
-<!-- HOME -->
-
-<section id="welcome">
-
-  <h2>
-    Welcome to GAMEON
-  </h2>
-
-  <p>
-    Your place for games, fun and awesome experiences.
-  </p>
-
-</section>
-
-
-<!-- GAME -->
-
-<section id="gamePage">
-
-  <h1 class="game-title">
-    🎮 GAMES
-  </h1>
-
-
-  <div class="games">
-
-
-    <a
-      class="game-card"
-      href="https://www.crazygames.com/"
-      target="_blank"
-      rel="noopener noreferrer">
-
-      <div class="game-icon">
-        ⭐
-      </div>
-
-      <strong>
-        CrazyGames
-      </strong>
-
-    </a>
-
-
-    <a
-      class="game-card"
-      href="https://www.xbox.com/"
-      target="_blank"
-      rel="noopener noreferrer">
-
-      <div class="game-icon">
-        🎮
-      </div>
-
-      <strong>
-        Xbox
-      </strong>
-
-    </a>
-
-
-    <a
-      class="game-card"
-      href="https://shellshock.io/"
-      target="_blank"
-      rel="noopener noreferrer">
-
-      <div class="game-icon">
-        💥
-      </div>
-
-      <strong>
-        Shell Shockers
-      </strong>
-
-    </a>
-
+    <!-- HOME -->
 
     <button
-      class="game-card"
-      onclick="openNeonSpace()">
+      class="blob-nav active"
+      id="homeButton"
+      onclick="showHome()">
 
-      <div class="game-icon">
-        🚀
-      </div>
+      🏠 HOME
 
-      <strong>
-        Neon Space
-      </strong>
+      <span class="blob-inner">
+
+        <span class="blobs">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </span>
+
+      </span>
 
     </button>
 
 
-  </div>
+    <!-- GAME -->
 
-</section>
+    <button
+      class="blob-nav"
+      id="gameButton"
+      onclick="showGames()">
+
+      🎮 GAME
+
+      <span class="blob-inner">
+
+        <span class="blobs">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </span>
+
+      </span>
+
+    </button>
+
+
+    <!-- OWNER -->
+
+    <button
+      class="blob-nav"
+      id="ownerButton"
+      onclick="showOwner()">
+
+      👑 OWNER
+
+      <span class="blob-inner">
+
+        <span class="blobs">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </span>
+
+      </span>
+
+    </button>
+
+
+  </nav>
+
+
+  <!-- ===================================================
+       HOME
+  ==================================================== -->
+
+  <section id="welcome">
+
+    <h2>
+      Welcome to GAMEON
+    </h2>
+
+    <p>
+      Discover games, explore new worlds and have fun.
+    </p>
+
+  </section>
+
+
+  <!-- ===================================================
+       GAME PAGE
+  ==================================================== -->
+
+  <section id="gamePage">
+
+
+    <h1 class="game-heading">
+      GAME CENTER
+    </h1>
+
+    <p class="subtitle">
+      Choose your next game
+    </p>
+
+
+    <!-- FEATURED -->
+
+    <div class="featured">
+
+      <div class="featured-text">
+
+        <div class="featured-label">
+          ⭐ FEATURED GAME
+        </div>
+
+        <h2>
+          Neon Space
+        </h2>
+
+        <p>
+          Enter the neon universe and explore space.
+        </p>
+
+        <button
+          class="play-btn"
+          onclick="startNeonSpace()">
+
+          PLAY NOW →
+
+        </button>
+
+      </div>
+
+
+      <div class="featured-icon">
+        🚀
+      </div>
+
+    </div>
+
+
+    <!-- KATEGORIER -->
+
+    <div class="categories">
+
+      <div class="category active">
+        ALL
+      </div>
+
+      <div class="category">
+        ACTION
+      </div>
+
+      <div class="category">
+        ARCADE
+      </div>
+
+      <div class="category">
+        SPACE
+      </div>
+
+    </div>
+
+
+    <!-- SPEL -->
+
+    <div class="games">
+
+
+      <!-- CRAZYGAMES -->
+
+      <a
+        class="game-card"
+        href="https://www.crazygames.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <div class="game-icon">
+          ⭐
+        </div>
+
+        <strong>
+          CrazyGames
+        </strong>
+
+        <span class="card-play">
+          PLAY →
+        </span>
+
+      </a>
+
+
+      <!-- XBOX -->
+
+      <a
+        class="game-card"
+        href="https://www.xbox.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <div class="game-icon">
+          🎮
+        </div>
+
+        <strong>
+          Xbox
+        </strong>
+
+        <span class="card-play">
+          EXPLORE →
+        </span>
+
+      </a>
+
+
+      <!-- SHELL SHOCKERS -->
+
+      <a
+        class="game-card"
+        href="https://shellshock.io/"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <div class="game-icon">
+          💥
+        </div>
+
+        <strong>
+          Shell Shockers
+        </strong>
+
+        <span class="card-play">
+          PLAY →
+        </span>
+
+      </a>
+
+
+      <!-- NEON SPACE -->
+
+      <button
+        class="game-card"
+        onclick="startNeonSpace()">
+
+        <div class="game-icon">
+          🚀
+        </div>
+
+        <strong>
+          Neon Space
+        </strong>
+
+        <span class="card-play">
+          PLAY →
+        </span>
+
+      </button>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       OWNER PAGE
+  ==================================================== -->
+
+  <section id="ownerPage">
+
+
+    <div class="owner-card">
+
+
+      <div class="owner-avatar">
+        👑
+      </div>
+
+
+      <div class="owner-badge">
+        GAMEON OWNER
+      </div>
+
+
+      <h1>
+        RUHOLLAH
+      </h1>
+
+
+      <p class="owner-description">
+
+        Welcome to my GAMEON profile.
+        I created this place for gaming,
+        fun and cool experiences.
+
+      </p>
+
+
+      <div class="owner-info">
+
+
+        <div>
+
+          <span>🎮</span>
+
+          <strong>
+            Gamer
+          </strong>
+
+          <small>
+            Gaming & fun
+          </small>
+
+        </div>
+
+
+        <div>
+
+          <span>⚡</span>
+
+          <strong>
+            Creator
+          </strong>
+
+          <small>
+            GAMEON
+          </small>
+
+        </div>
+
+
+        <div>
+
+          <span>🚀</span>
+
+          <strong>
+            Future
+          </strong>
+
+          <small>
+            More games coming
+          </small>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
 
 
 </div>
 
 
-<!-- GOO FILTER -->
+<!-- =====================================================
+     GOO EFFECT
+===================================================== -->
 
 <svg width="0" height="0">
 
@@ -947,24 +1691,47 @@ body {
 </svg>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
+
+function hidePages() {
+
+  document.getElementById("welcome")
+    .style.display = "none";
+
+  document.getElementById("gamePage")
+    .style.display = "none";
+
+  document.getElementById("ownerPage")
+    .style.display = "none";
+
+
+  document.getElementById("homeButton")
+    .classList.remove("active");
+
+  document.getElementById("gameButton")
+    .classList.remove("active");
+
+  document.getElementById("ownerButton")
+    .classList.remove("active");
+}
+
 
 /* HOME */
 
 function showHome() {
 
+  hidePages();
+
   document.getElementById("welcome")
     .style.display = "block";
 
-  document.getElementById("gamePage")
-    .style.display = "none";
-
   document.getElementById("homeButton")
     .classList.add("active");
-
-  document.getElementById("gameButton")
-    .classList.remove("active");
-
 }
 
 
@@ -972,28 +1739,41 @@ function showHome() {
 
 function showGames() {
 
-  document.getElementById("welcome")
-    .style.display = "none";
+  hidePages();
 
   document.getElementById("gamePage")
     .style.display = "block";
 
-  document.getElementById("homeButton")
-    .classList.remove("active");
-
   document.getElementById("gameButton")
     .classList.add("active");
+}
 
+
+/* OWNER */
+
+function showOwner() {
+
+  hidePages();
+
+  document.getElementById("ownerPage")
+    .style.display = "block";
+
+  document.getElementById("ownerButton")
+    .classList.add("active");
 }
 
 
 /* NEON SPACE */
 
-function openNeonSpace() {
+function startNeonSpace() {
 
-  alert("Neon Space kommer här!");
+  alert(
+    "🚀 NEON SPACE\n\n" +
+    "Spelet är redo att byggas!"
+  );
 
 }
+
 
 </script>
 
