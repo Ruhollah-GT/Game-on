@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="ChatGPT Image 2 sep. 2026 08_36_13.png
-">
+
 <title>GAMEON</title>
 
 <style>
 
-/* =====================================================
+/* =========================
    RESET
-===================================================== */
+========================= */
 
 * {
   box-sizing: border-box;
@@ -19,26 +18,23 @@
   padding: 0;
 }
 
+html,
 body {
-  min-height: 100vh;
+  min-height: 100%;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
-  overflow-x: hidden;
-
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      #4d0000 0%,
-      #240000 25%,
-      #090909 65%,
-      #020202 100%
-    );
+    radial-gradient(circle at 50% 20%, #500000 0%, #210000 25%, #080808 65%, #020202 100%);
+  overflow-x: hidden;
 }
 
 
-/* =====================================================
-   BAKGRUND
-===================================================== */
+/* =========================
+   BACKGROUND
+========================= */
 
 .background {
   position: fixed;
@@ -51,63 +47,41 @@ body {
 .background::before {
   content: "";
   position: absolute;
-
-  width: 550px;
-  height: 550px;
-
+  width: 600px;
+  height: 600px;
   left: 50%;
-  top: 25%;
-
+  top: 20%;
   transform: translate(-50%, -50%);
-
   border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,0,0,.20),
-      transparent 70%
-    );
-
-  filter: blur(50px);
-
-  animation: glow 5s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255,0,0,.22), transparent 70%);
+  filter: blur(45px);
+  animation: backgroundGlow 5s ease-in-out infinite;
 }
 
-@keyframes glow {
-
+@keyframes backgroundGlow {
   0%,100% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: .6;
   }
 
   50% {
     transform: translate(-50%, -50%) scale(1.3);
-    opacity: 1;
   }
 }
 
 
-/* =====================================================
+/* =========================
    PARTICLES
-===================================================== */
+========================= */
 
 .particles span {
   position: absolute;
-
-  display: block;
-
   width: 7px;
   height: 7px;
-
   border-radius: 50%;
-
   background: #ff2020;
-
   box-shadow:
     0 0 10px #ff2020,
     0 0 25px red;
-
   animation: particle 6s infinite ease-in-out;
 }
 
@@ -159,7 +133,6 @@ body {
 }
 
 @keyframes particle {
-
   0%,100% {
     transform: translateY(0) scale(.7);
     opacity: .25;
@@ -172,60 +145,43 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
 .app {
   position: relative;
   z-index: 2;
-
   min-height: 100vh;
-
-  padding:
-    30px 20px 70px;
+  padding: 30px 20px 70px;
 }
 
 
-/* =====================================================
-   GAMEON LOGO
-===================================================== */
+/* =========================
+   LOGO
+========================= */
 
 .logo {
-
   width: max-content;
-
   margin: auto;
-
-  padding:
-    14px 30px;
-
+  padding: 14px 30px;
   border-radius: 25px;
 
-  background:
-    rgba(30,0,0,.55);
+  background: rgba(30,0,0,.55);
+  border: 1px solid rgba(255,50,50,.55);
 
-  border:
-    1px solid rgba(255,50,50,.55);
-
-  backdrop-filter:
-    blur(20px);
+  backdrop-filter: blur(20px);
 
   box-shadow:
     0 0 20px rgba(255,0,0,.5),
     inset 0 0 25px rgba(255,0,0,.08);
 
-  animation:
-    logoFloat 4s ease-in-out infinite;
+  animation: logoFloat 4s ease-in-out infinite;
 }
 
 .logo h1 {
-
-  font-size:
-    clamp(42px, 8vw, 75px);
-
+  font-size: clamp(42px, 8vw, 75px);
   font-weight: 900;
-
   letter-spacing: 7px;
 
   text-shadow:
@@ -240,7 +196,6 @@ body {
 }
 
 @keyframes logoFloat {
-
   0%,100% {
     transform: translateY(0);
   }
@@ -251,53 +206,42 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    NAVIGATION
-===================================================== */
+========================= */
 
 .main-nav {
-
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   gap: 12px;
 
   width: max-content;
+  max-width: 100%;
 
   margin: 30px auto;
-
   padding: 8px;
 
   border-radius: 25px;
 
-  background:
-    rgba(255,255,255,.06);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
 
-  border:
-    1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(25px);
 
-  backdrop-filter:
-    blur(25px);
-
-  box-shadow:
-    0 15px 50px rgba(0,0,0,.5);
+  box-shadow: 0 15px 50px rgba(0,0,0,.5);
 }
 
 
-/* =====================================================
-   BLOB BUTTON
-===================================================== */
+/* =========================
+   BLOB BUTTONS
+========================= */
 
 .blob-nav {
-
   position: relative;
 
   min-width: 150px;
-
-  padding:
-    16px 25px;
+  padding: 16px 25px;
 
   border: none;
   outline: none;
@@ -305,78 +249,59 @@ body {
   border-radius: 20px;
 
   background: transparent;
-
   color: white;
 
   font-size: 14px;
   font-weight: 900;
-
   letter-spacing: 2px;
 
   cursor: pointer;
-
   overflow: hidden;
 
   transition: .3s;
 }
 
 .blob-nav:hover {
-
-  transform:
-    translateY(-4px)
-    scale(1.05);
+  transform: translateY(-4px) scale(1.05);
 }
 
 .blob-nav:active {
-
-  transform:
-    scale(.94);
+  transform: scale(.94);
 }
 
 .blob-nav::before {
-
   content: "";
 
   position: absolute;
-
   inset: 0;
 
-  border:
-    2px solid #ff2020;
-
+  border: 2px solid #ff2020;
   border-radius: 20px;
 
   z-index: 4;
-
   pointer-events: none;
 }
 
 .blob-inner {
-
   position: absolute;
-
   inset: 0;
 
   overflow: hidden;
 
   border-radius: 18px;
-
   background: #100000;
 
   z-index: -1;
 }
 
 .blobs {
-
   position: absolute;
-
   inset: 0;
 
   filter: url("#goo");
 }
 
 .blobs span {
-
   position: absolute;
 
   top: 0;
@@ -388,12 +313,9 @@ body {
 
   background: #e00000;
 
-  transform:
-    translateY(120%)
-    scale(1.3);
+  transform: translateY(120%) scale(1.3);
 
-  transition:
-    .45s cubic-bezier(.2,.8,.2,1);
+  transition: .45s cubic-bezier(.2,.8,.2,1);
 }
 
 .blobs span:nth-child(1) {
@@ -416,43 +338,30 @@ body {
 }
 
 .blob-nav:hover .blobs span {
-
-  transform:
-    translateY(0)
-    scale(1.4);
+  transform: translateY(0) scale(1.4);
 }
 
 .blob-nav.active {
-
   box-shadow:
     0 0 15px rgba(255,0,0,.6),
     0 0 35px rgba(255,0,0,.3);
 }
 
 
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
 #welcome {
-
-  width:
-    min(900px, 92%);
-
-  margin:
-    90px auto;
-
+  width: min(900px, 92%);
+  margin: 90px auto;
   text-align: center;
 
-  animation:
-    appear .6s ease;
+  animation: appear .6s ease;
 }
 
 #welcome h2 {
-
-  font-size:
-    clamp(35px, 7vw, 65px);
-
+  font-size: clamp(35px, 7vw, 65px);
   margin-bottom: 15px;
 
   text-shadow:
@@ -461,37 +370,28 @@ body {
 }
 
 #welcome p {
-
   color: #aaa;
-
   font-size: 18px;
 }
 
 
-/* =====================================================
+/* =========================
    GAME PAGE
-===================================================== */
+========================= */
 
 #gamePage {
-
   display: none;
 
-  width:
-    min(1150px, 94%);
+  width: min(1150px, 94%);
+  margin: 50px auto;
 
-  margin:
-    50px auto;
-
-  animation:
-    appear .5s ease;
+  animation: appear .5s ease;
 }
 
 .game-heading {
-
   text-align: center;
 
-  font-size:
-    clamp(35px, 6vw, 55px);
+  font-size: clamp(35px, 6vw, 55px);
 
   margin-bottom: 10px;
 
@@ -501,264 +401,34 @@ body {
 }
 
 .subtitle {
-
   text-align: center;
-
   color: #888;
-
   margin-bottom: 35px;
 }
 
 
-/* =====================================================
-   FEATURED GAME
-===================================================== */
-
-.featured {
-
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  min-height: 230px;
-
-  margin-bottom: 30px;
-
-  padding: 35px;
-
-  overflow: hidden;
-
-  border-radius: 28px;
-
-  background:
-    linear-gradient(
-      120deg,
-      rgba(110,0,0,.8),
-      rgba(25,0,0,.75),
-      rgba(5,5,5,.9)
-    );
-
-  border:
-    1px solid rgba(255,50,50,.45);
-
-  box-shadow:
-    0 15px 50px rgba(0,0,0,.45),
-    0 0 35px rgba(255,0,0,.15);
-}
-
-.featured::before {
-
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-  height: 300px;
-
-  right: -70px;
-  top: -80px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255,0,0,.2);
-
-  filter: blur(40px);
-}
-
-.featured-text {
-
-  position: relative;
-
-  z-index: 2;
-}
-
-.featured-label {
-
-  color: #ff4040;
-
-  font-size: 12px;
-
-  font-weight: bold;
-
-  letter-spacing: 3px;
-}
-
-.featured h2 {
-
-  margin:
-    10px 0;
-
-  font-size: 40px;
-
-  text-shadow:
-    0 0 15px red;
-}
-
-.featured p {
-
-  color: #aaa;
-
-  margin-bottom: 20px;
-}
-
-.featured-icon {
-
-  position: relative;
-
-  z-index: 2;
-
-  font-size: 100px;
-
-  filter:
-    drop-shadow(0 0 20px red);
-
-  animation:
-    rocket 2s ease-in-out infinite;
-}
-
-@keyframes rocket {
-
-  0%,100% {
-    transform:
-      translateY(0)
-      rotate(-5deg);
-  }
-
-  50% {
-    transform:
-      translateY(-15px)
-      rotate(5deg);
-  }
-}
-
-
-/* =====================================================
-   PLAY BUTTON
-===================================================== */
-
-.play-btn {
-
-  padding:
-    13px 22px;
-
-  border: none;
-
-  border-radius: 14px;
-
-  background:
-    #e00000;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 15px rgba(255,0,0,.6);
-
-  transition: .3s;
-}
-
-.play-btn:hover {
-
-  transform:
-    scale(1.08);
-
-  box-shadow:
-    0 0 25px red,
-    0 0 50px rgba(255,0,0,.5);
-}
-
-
-/* =====================================================
-   CATEGORIES
-===================================================== */
-
-.categories {
-
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  flex-wrap: wrap;
-
-  margin-bottom: 25px;
-}
-
-.category {
-
-  padding:
-    9px 15px;
-
-  border-radius: 50px;
-
-  background:
-    rgba(255,255,255,.06);
-
-  border:
-    1px solid rgba(255,255,255,.1);
-
-  color: #aaa;
-
-  font-size: 12px;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  transition: .3s;
-}
-
-.category:hover,
-.category.active {
-
-  color: white;
-
-  border-color:
-    #ff3030;
-
-  background:
-    rgba(255,0,0,.15);
-
-  box-shadow:
-    0 0 15px rgba(255,0,0,.25);
-}
-
-
-/* =====================================================
+/* =========================
    GAME CARDS
-===================================================== */
+========================= */
 
 .games {
-
   display: grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(4, 1fr);
 
   gap: 18px;
 }
 
 .game-card {
-
   position: relative;
 
   min-height: 210px;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 12px;
@@ -776,7 +446,6 @@ body {
     1px solid rgba(255,50,50,.25);
 
   color: white;
-
   text-decoration: none;
 
   cursor: pointer;
@@ -787,7 +456,6 @@ body {
 }
 
 .game-card::before {
-
   content: "";
 
   position: absolute;
@@ -797,23 +465,19 @@ body {
 
   border-radius: 50%;
 
-  background:
-    rgba(255,0,0,.12);
+  background: rgba(255,0,0,.12);
 
-  filter:
-    blur(25px);
+  filter: blur(25px);
 
   transition: .4s;
 }
 
 .game-card:hover {
-
   transform:
     translateY(-10px)
     scale(1.03);
 
-  border-color:
-    #ff3030;
+  border-color: #ff3030;
 
   box-shadow:
     0 0 20px rgba(255,0,0,.5),
@@ -821,16 +485,10 @@ body {
 }
 
 .game-card:hover::before {
-
-  transform:
-    scale(2);
-
-  background:
-    rgba(255,0,0,.2);
+  transform: scale(2);
 }
 
 .game-icon {
-
   position: relative;
 
   width: 75px;
@@ -843,8 +501,7 @@ body {
 
   border-radius: 22px;
 
-  background:
-    rgba(255,0,0,.12);
+  background: rgba(255,0,0,.12);
 
   border:
     1px solid rgba(255,50,50,.25);
@@ -855,7 +512,6 @@ body {
 }
 
 .game-card:hover .game-icon {
-
   transform:
     translateY(-5px)
     rotate(-5deg)
@@ -866,50 +522,226 @@ body {
 }
 
 .game-card strong {
-
   position: relative;
-
   font-size: 17px;
 }
 
 .card-play {
-
   position: relative;
 
   color: #ff4040;
 
   font-size: 11px;
-
   font-weight: bold;
 
   letter-spacing: 2px;
 }
 
 
-/* =====================================================
-   OWNER PAGE
-===================================================== */
+/* =========================
+   NEON SPACE
+========================= */
 
-#ownerPage {
-
+#neonSpace {
   display: none;
 
-  width:
-    min(850px, 92%);
+  width: min(900px, 95%);
+  margin: 30px auto;
 
-  margin:
-    60px auto;
+  animation: appear .5s ease;
+}
 
-  animation:
-    appear .6s ease;
+.space-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+.space-title {
+  font-size: 30px;
+
+  text-shadow:
+    0 0 15px red,
+    0 0 35px red;
+}
+
+.score-box {
+  padding: 10px 18px;
+
+  border-radius: 15px;
+
+  background: rgba(255,0,0,.12);
+
+  border:
+    1px solid rgba(255,50,50,.4);
+
+  font-weight: bold;
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.2);
+}
+
+#spaceCanvas {
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  border-radius: 25px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #180000,
+      #030303
+    );
+
+  border:
+    2px solid rgba(255,40,40,.5);
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,.35),
+    inset 0 0 50px rgba(255,0,0,.1);
+
+  cursor: crosshair;
+}
+
+.space-controls {
+  margin-top: 15px;
+
+  text-align: center;
+
+  color: #999;
+
+  font-size: 13px;
+}
+
+.space-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+
+/* =========================
+   NORMAL BUTTON
+========================= */
+
+.red-btn {
+  border: 1px solid #ff3030;
+
+  background:
+    rgba(120,0,0,.55);
+
+  color: white;
+
+  padding:
+    11px 18px;
+
+  border-radius: 13px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.red-btn:hover {
+  background: #d00000;
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,.5);
+
+  transform: scale(1.05);
+}
+
+
+/* =========================
+   EAGLERCRAFT
+========================= */
+
+#eaglerPage {
+  display: none;
+
+  width: min(1100px, 95%);
+  margin: 35px auto;
+
+  animation: appear .5s ease;
+}
+
+.eagler-box {
+  padding: 25px;
+
+  text-align: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(60,0,0,.75),
+      rgba(8,8,8,.95)
+    );
+
+  border:
+    1px solid rgba(255,50,50,.35);
+
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.5);
+}
+
+.eagler-box h2 {
+  margin-bottom: 8px;
+
+  text-shadow:
+    0 0 15px red;
+}
+
+.eagler-box p {
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.eagler-frame {
+  width: 100%;
+  height: 650px;
+
+  border: 2px solid rgba(255,50,50,.4);
+
+  border-radius: 20px;
+
+  background: #000;
+}
+
+
+/* =========================
+   OWNER
+========================= */
+
+#ownerPage {
+  display: none;
+
+  width: min(850px, 92%);
+  margin: 60px auto;
+
+  animation: appear .6s ease;
 }
 
 .owner-card {
-
   position: relative;
 
-  padding:
-    45px 35px;
+  padding: 45px 35px;
 
   text-align: center;
 
@@ -929,41 +761,12 @@ body {
     0 20px 60px rgba(0,0,0,.5),
     0 0 35px rgba(255,0,0,.2);
 
-  backdrop-filter:
-    blur(20px);
+  backdrop-filter: blur(20px);
 
   overflow: hidden;
 }
 
-.owner-card::before {
-
-  content: "";
-
-  position: absolute;
-
-  width: 280px;
-  height: 280px;
-
-  left: 50%;
-  top: -150px;
-
-  transform:
-    translateX(-50%);
-
-  border-radius: 50%;
-
-  background:
-    rgba(255,0,0,.2);
-
-  filter:
-    blur(45px);
-}
-
-
-/* AVATAR */
-
 .owner-avatar {
-
   position: relative;
 
   width: 95px;
@@ -985,8 +788,7 @@ body {
       #650000
     );
 
-  border:
-    2px solid #ff5555;
+  border: 2px solid #ff5555;
 
   font-size: 45px;
 
@@ -999,7 +801,6 @@ body {
 }
 
 @keyframes ownerFloat {
-
   0%,100% {
     transform: translateY(0);
   }
@@ -1009,30 +810,23 @@ body {
   }
 }
 
-
-/* BADGE */
-
 .owner-badge {
-
   position: relative;
 
   display: inline-block;
 
   margin-top: 20px;
 
-  padding:
-    7px 14px;
+  padding: 7px 14px;
 
   border-radius: 50px;
 
-  background:
-    rgba(255,0,0,.12);
+  background: rgba(255,0,0,.12);
 
   border:
     1px solid rgba(255,50,50,.35);
 
-  color:
-    #ff5555;
+  color: #ff5555;
 
   font-size: 11px;
 
@@ -1041,17 +835,12 @@ body {
   letter-spacing: 2px;
 }
 
-
-/* NAMN */
-
 .owner-card h1 {
-
   position: relative;
 
   margin-top: 15px;
 
-  font-size:
-    clamp(35px,7vw,55px);
+  font-size: clamp(35px,7vw,55px);
 
   letter-spacing: 5px;
 
@@ -1061,11 +850,7 @@ body {
     0 0 50px red;
 }
 
-
-/* INFO */
-
 .owner-description {
-
   position: relative;
 
   max-width: 600px;
@@ -1076,15 +861,9 @@ body {
   color: #aaa;
 
   line-height: 1.7;
-
-  font-size: 15px;
 }
 
-
-/* INFO CARDS */
-
 .owner-info {
-
   position: relative;
 
   display: grid;
@@ -1096,9 +875,7 @@ body {
 }
 
 .owner-info div {
-
-  padding:
-    20px 10px;
+  padding: 20px 10px;
 
   border-radius: 20px;
 
@@ -1112,22 +889,18 @@ body {
 }
 
 .owner-info div:hover {
-
-  transform:
-    translateY(-6px);
+  transform: translateY(-6px);
 
   background:
     rgba(255,0,0,.1);
 
-  border-color:
-    #ff3030;
+  border-color: #ff3030;
 
   box-shadow:
     0 0 20px rgba(255,0,0,.25);
 }
 
 .owner-info span {
-
   display: block;
 
   font-size: 28px;
@@ -1136,14 +909,10 @@ body {
 }
 
 .owner-info strong {
-
   display: block;
-
-  font-size: 14px;
 }
 
 .owner-info small {
-
   display: block;
 
   margin-top: 5px;
@@ -1152,12 +921,11 @@ body {
 }
 
 
-/* =====================================================
+/* =========================
    ANIMATION
-===================================================== */
+========================= */
 
 @keyframes appear {
-
   from {
     opacity: 0;
     transform:
@@ -1174,9 +942,9 @@ body {
 }
 
 
-/* =====================================================
-   MOBIL
-===================================================== */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px) {
 
@@ -1185,10 +953,8 @@ body {
       repeat(2,1fr);
   }
 
-  .featured {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
+  .eagler-frame {
+    height: 550px;
   }
 }
 
@@ -1202,7 +968,11 @@ body {
     min-width: 0;
     width: 33.33%;
     padding: 14px 5px;
-    font-size: 11px;
+    font-size: 10px;
+  }
+
+  .games {
+    grid-template-columns: 1fr 1fr;
   }
 
   .owner-info {
@@ -1212,27 +982,13 @@ body {
   .owner-card {
     padding: 35px 20px;
   }
-}
 
-@media(max-width:450px) {
-
-  .games {
-    grid-template-columns:
-      1fr 1fr;
+  .eagler-box {
+    padding: 15px;
   }
 
-  .game-card {
-    min-height: 170px;
-  }
-
-  .game-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 30px;
-  }
-
-  .game-card strong {
-    font-size: 14px;
+  .eagler-frame {
+    height: 500px;
   }
 }
 
@@ -1243,9 +999,9 @@ body {
 <body>
 
 
-<!-- =====================================================
-     BAKGRUND
-===================================================== -->
+<!-- =========================
+     BACKGROUND
+========================= -->
 
 <div class="background">
 
@@ -1265,14 +1021,14 @@ body {
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      APP
-===================================================== -->
+========================= -->
 
 <div class="app">
 
 
-  <!-- GAMEON -->
+  <!-- LOGO -->
 
   <div class="logo">
 
@@ -1283,14 +1039,9 @@ body {
   </div>
 
 
-  <!-- ===================================================
-       NAV
-  ==================================================== -->
+  <!-- NAVIGATION -->
 
   <nav class="main-nav">
-
-
-    <!-- HOME -->
 
     <button
       class="blob-nav active"
@@ -1300,22 +1051,16 @@ body {
       🏠 HOME
 
       <span class="blob-inner">
-
         <span class="blobs">
-
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-
         </span>
-
       </span>
 
     </button>
 
-
-    <!-- GAME -->
 
     <button
       class="blob-nav"
@@ -1325,22 +1070,16 @@ body {
       🎮 GAME
 
       <span class="blob-inner">
-
         <span class="blobs">
-
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-
         </span>
-
       </span>
 
     </button>
 
-
-    <!-- OWNER -->
 
     <button
       class="blob-nav"
@@ -1350,27 +1089,22 @@ body {
       👑 OWNER
 
       <span class="blob-inner">
-
         <span class="blobs">
-
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-
         </span>
-
       </span>
 
     </button>
 
-
   </nav>
 
 
-  <!-- ===================================================
+  <!-- =========================
        HOME
-  ==================================================== -->
+  ========================= -->
 
   <section id="welcome">
 
@@ -1385,12 +1119,11 @@ body {
   </section>
 
 
-  <!-- ===================================================
-       GAME PAGE
-  ==================================================== -->
+  <!-- =========================
+       GAME
+  ========================= -->
 
   <section id="gamePage">
-
 
     <h1 class="game-heading">
       GAME CENTER
@@ -1401,68 +1134,28 @@ body {
     </p>
 
 
-    <!-- FEATURED -->
+    <div class="games">
 
-    <div class="featured">
 
-      <div class="featured-text">
+      <!-- NEON SPACE -->
 
-        <div class="featured-label">
-          ⭐ FEATURED GAME
+      <button
+        class="game-card"
+        onclick="openNeonSpace()">
+
+        <div class="game-icon">
+          🚀
         </div>
 
-        <h2>
+        <strong>
           Neon Space
-        </h2>
+        </strong>
 
-        <p>
-          Enter the neon universe and explore space.
-        </p>
-
-        <button
-          class="play-btn"
-          onclick="startNeonSpace()">
-
+        <span class="card-play">
           PLAY NOW →
+        </span>
 
-        </button>
-
-      </div>
-
-
-      <div class="featured-icon">
-        🚀
-      </div>
-
-    </div>
-
-
-    <!-- KATEGORIER -->
-
-    <div class="categories">
-
-      <div class="category active">
-        ALL
-      </div>
-
-      <div class="category">
-        ACTION
-      </div>
-
-      <div class="category">
-        ARCADE
-      </div>
-
-      <div class="category">
-        SPACE
-      </div>
-
-    </div>
-
-
-    <!-- SPEL -->
-
-    <div class="games">
+      </button>
 
 
       <!-- CRAZYGAMES -->
@@ -1483,29 +1176,6 @@ body {
 
         <span class="card-play">
           PLAY →
-        </span>
-
-      </a>
-
-
-      <!-- XBOX -->
-
-      <a
-        class="game-card"
-        href="https://www.xbox.com/"
-        target="_blank"
-        rel="noopener noreferrer">
-
-        <div class="game-icon">
-          🎮
-        </div>
-
-        <strong>
-          Xbox
-        </strong>
-
-        <span class="card-play">
-          EXPLORE →
         </span>
 
       </a>
@@ -1534,18 +1204,18 @@ body {
       </a>
 
 
-      <!-- NEON SPACE -->
+      <!-- EAGLERCRAFT -->
 
       <button
         class="game-card"
-        onclick="startNeonSpace()">
+        onclick="openEaglercraft()">
 
         <div class="game-icon">
-          🚀
+          ⛏️
         </div>
 
         <strong>
-          Neon Space
+          Eaglercraft
         </strong>
 
         <span class="card-play">
@@ -1560,30 +1230,122 @@ body {
   </section>
 
 
-  <!-- ===================================================
-       OWNER PAGE
-  ==================================================== -->
+  <!-- =========================
+       NEON SPACE GAME
+  ========================= -->
+
+  <section id="neonSpace">
+
+    <div class="space-top">
+
+      <h2 class="space-title">
+        🚀 NEON SPACE
+      </h2>
+
+      <div class="score-box">
+        SCORE:
+        <span id="score">
+          0
+        </span>
+      </div>
+
+    </div>
+
+
+    <canvas id="spaceCanvas"></canvas>
+
+
+    <div class="space-controls">
+
+      ⬅️ ➡️
+      använd piltangenterna för att flytta skeppet
+
+      <br>
+
+      Samla ⭐ och undvik de röda cirklarna!
+
+    </div>
+
+
+    <div class="space-buttons">
+
+      <button
+        class="red-btn"
+        onclick="restartSpace()">
+
+        🔄 RESTART
+
+      </button>
+
+      <button
+        class="red-btn"
+        onclick="backToGames()">
+
+        ← BACK TO GAMES
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EAGLERCRAFT
+  ========================= -->
+
+  <section id="eaglerPage">
+
+    <div class="eagler-box">
+
+      <h2>
+        ⛏️ EAGLERCRAFT 1.8.8
+      </h2>
+
+      <p>
+        Försöker öppna Eaglercraft direkt inne i GAMEON.
+      </p>
+
+      <iframe
+        class="eagler-frame"
+        src="https://eaglercraft.com/play?version=1.8.8-wasm"
+        title="Eaglercraft 1.8.8">
+      </iframe>
+
+      <br><br>
+
+      <button
+        class="red-btn"
+        onclick="backToGames()">
+
+        ← BACK TO GAMES
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       OWNER
+  ========================= -->
 
   <section id="ownerPage">
 
-
     <div class="owner-card">
-
 
       <div class="owner-avatar">
         👑
       </div>
 
-
       <div class="owner-badge">
         GAMEON OWNER
       </div>
 
-
       <h1>
         RUHOLLAH
       </h1>
-
 
       <p class="owner-description">
 
@@ -1593,57 +1355,27 @@ body {
 
       </p>
 
-
       <div class="owner-info">
 
-
         <div>
-
           <span>🎮</span>
-
-          <strong>
-            Gamer
-          </strong>
-
-          <small>
-            Gaming & fun
-          </small>
-
+          <strong>Gamer</strong>
+          <small>Gaming & fun</small>
         </div>
 
-
         <div>
-
           <span>⚡</span>
-
-          <strong>
-            Creator
-          </strong>
-
-          <small>
-            GAMEON
-          </small>
-
+          <strong>Creator</strong>
+          <small>GAMEON</small>
         </div>
-
 
         <div>
-
           <span>🚀</span>
-
-          <strong>
-            Future
-          </strong>
-
-          <small>
-            More games coming
-          </small>
-
+          <strong>Future</strong>
+          <small>More games coming</small>
         </div>
-
 
       </div>
-
 
     </div>
 
@@ -1653,9 +1385,9 @@ body {
 </div>
 
 
-<!-- =====================================================
-     GOO EFFECT
-===================================================== -->
+<!-- =========================
+     GOO FILTER
+========================= -->
 
 <svg width="0" height="0">
 
@@ -1692,24 +1424,19 @@ body {
 </svg>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
+/* =====================================================
+   PAGE SYSTEM
+===================================================== */
 
-function hidePages() {
+function hideAllPages() {
 
-  document.getElementById("welcome")
-    .style.display = "none";
-
-  document.getElementById("gamePage")
-    .style.display = "none";
-
-  document.getElementById("ownerPage")
-    .style.display = "none";
-
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("ownerPage").style.display = "none";
+  document.getElementById("neonSpace").style.display = "none";
+  document.getElementById("eaglerPage").style.display = "none";
 
   document.getElementById("homeButton")
     .classList.remove("active");
@@ -1726,7 +1453,7 @@ function hidePages() {
 
 function showHome() {
 
-  hidePages();
+  hideAllPages();
 
   document.getElementById("welcome")
     .style.display = "block";
@@ -1740,7 +1467,7 @@ function showHome() {
 
 function showGames() {
 
-  hidePages();
+  hideAllPages();
 
   document.getElementById("gamePage")
     .style.display = "block";
@@ -1754,7 +1481,7 @@ function showGames() {
 
 function showOwner() {
 
-  hidePages();
+  hideAllPages();
 
   document.getElementById("ownerPage")
     .style.display = "block";
@@ -1764,19 +1491,607 @@ function showOwner() {
 }
 
 
-/* NEON SPACE */
+/* =====================================================
+   NEON SPACE
+===================================================== */
 
-function startNeonSpace() {
+const canvas =
+  document.getElementById("spaceCanvas");
 
-  alert(
-    "🚀 NEON SPACE\n\n" +
-    "Spelet är redo att byggas!"
+const ctx =
+  canvas.getContext("2d");
+
+let score = 0;
+let gameRunning = false;
+let animationId;
+
+let keys = {};
+
+let player = {
+  x: 0,
+  y: 0,
+  width: 38,
+  height: 38,
+  speed: 6
+};
+
+let stars = [];
+let enemies = [];
+
+
+/* RESIZE */
+
+function resizeCanvas() {
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+
+  player.x =
+    canvas.width / 2;
+
+  player.y =
+    canvas.height - 65;
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+/* KEYBOARD */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    keys[event.key] = true;
+
+    if (
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowRight" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+    }
+
+  }
+);
+
+document.addEventListener(
+  "keyup",
+  function(event) {
+
+    keys[event.key] = false;
+
+  }
+);
+
+
+/* CREATE STAR */
+
+function createStar() {
+
+  stars.push({
+
+    x:
+      Math.random() *
+      (canvas.width - 30) + 15,
+
+    y: -20,
+
+    size:
+      8 + Math.random() * 5,
+
+    speed:
+      2 + Math.random() * 2
+
+  });
+
+}
+
+
+/* CREATE ENEMY */
+
+function createEnemy() {
+
+  enemies.push({
+
+    x:
+      Math.random() *
+      (canvas.width - 35) + 17,
+
+    y: -30,
+
+    size:
+      12 + Math.random() * 8,
+
+    speed:
+      2.5 + Math.random() * 2
+
+  });
+
+}
+
+
+/* COLLISION */
+
+function collision(a, b) {
+
+  return (
+    a.x - a.width / 2 <
+      b.x + b.size &&
+
+    a.x + a.width / 2 >
+      b.x - b.size &&
+
+    a.y - a.height / 2 <
+      b.y + b.size &&
+
+    a.y + a.height / 2 >
+      b.y - b.size
   );
 
 }
 
 
+/* DRAW PLAYER */
+
+function drawPlayer() {
+
+  ctx.save();
+
+  ctx.translate(
+    player.x,
+    player.y
+  );
+
+  ctx.shadowBlur = 25;
+  ctx.shadowColor = "#ff2020";
+
+  ctx.fillStyle = "#ff3030";
+
+  ctx.beginPath();
+
+  ctx.moveTo(0, -25);
+  ctx.lineTo(22, 20);
+  ctx.lineTo(0, 12);
+  ctx.lineTo(-22, 20);
+
+  ctx.closePath();
+
+  ctx.fill();
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    -3,
+    6,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+  ctx.restore();
+}
+
+
+/* DRAW STAR */
+
+function drawStar(star) {
+
+  ctx.save();
+
+  ctx.translate(
+    star.x,
+    star.y
+  );
+
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = "#ffffff";
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.beginPath();
+
+  for (
+    let i = 0;
+    i < 10;
+    i++
+  ) {
+
+    const angle =
+      -Math.PI / 2 +
+      i * Math.PI / 5;
+
+    const radius =
+      i % 2 === 0
+        ? star.size
+        : star.size / 2;
+
+    const x =
+      Math.cos(angle) * radius;
+
+    const y =
+      Math.sin(angle) * radius;
+
+    if (i === 0) {
+      ctx.moveTo(x,y);
+    } else {
+      ctx.lineTo(x,y);
+    }
+
+  }
+
+  ctx.closePath();
+
+  ctx.fill();
+
+  ctx.restore();
+}
+
+
+/* DRAW ENEMY */
+
+function drawEnemy(enemy) {
+
+  ctx.save();
+
+  ctx.translate(
+    enemy.x,
+    enemy.y
+  );
+
+  ctx.shadowBlur = 25;
+  ctx.shadowColor = "#ff0000";
+
+  ctx.fillStyle = "#e00000";
+
+  ctx.beginPath();
+
+  ctx.arc(
+    0,
+    0,
+    enemy.size,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+  ctx.strokeStyle = "#ff5555";
+
+  ctx.lineWidth = 2;
+
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+
+/* STAR FIELD */
+
+function drawSpace() {
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /* background stars */
+
+  for (
+    let i = 0;
+    i < 50;
+    i++
+  ) {
+
+    const x =
+      (i * 97) %
+      canvas.width;
+
+    const y =
+      (i * 53 +
+       Date.now() * .025) %
+      canvas.height;
+
+    ctx.fillStyle =
+      "rgba(255,255,255,.35)";
+
+    ctx.fillRect(
+      x,
+      y,
+      2,
+      2
+    );
+
+  }
+
+
+  drawPlayer();
+
+
+  stars.forEach(drawStar);
+
+  enemies.forEach(drawEnemy);
+
+}
+
+
+/* UPDATE */
+
+function updateSpace() {
+
+  if (
+    keys["ArrowLeft"] ||
+    keys["a"] ||
+    keys["A"]
+  ) {
+
+    player.x -= player.speed;
+
+  }
+
+  if (
+    keys["ArrowRight"] ||
+    keys["d"] ||
+    keys["D"]
+  ) {
+
+    player.x += player.speed;
+
+  }
+
+
+  /* boundaries */
+
+  player.x =
+    Math.max(
+      25,
+      Math.min(
+        canvas.width - 25,
+        player.x
+      )
+    );
+
+
+  /* stars */
+
+  stars.forEach(
+    star => {
+
+      star.y += star.speed;
+
+    }
+  );
+
+
+  /* enemies */
+
+  enemies.forEach(
+    enemy => {
+
+      enemy.y += enemy.speed;
+
+    }
+  );
+
+
+  /* collect stars */
+
+  stars =
+    stars.filter(
+      star => {
+
+        if (
+          collision(
+            player,
+            star
+          )
+        ) {
+
+          score++;
+
+          document
+            .getElementById("score")
+            .textContent = score;
+
+          return false;
+        }
+
+        return star.y <
+          canvas.height + 30;
+
+      }
+    );
+
+
+  /* enemy hit */
+
+  for (
+    const enemy of enemies
+  ) {
+
+    if (
+      collision(
+        player,
+        enemy
+      )
+    ) {
+
+      gameOver();
+
+      return;
+
+    }
+
+  }
+
+
+  enemies =
+    enemies.filter(
+      enemy =>
+        enemy.y <
+        canvas.height + 40
+    );
+
+
+  /* spawn */
+
+  if (
+    Math.random() < .025
+  ) {
+    createStar();
+  }
+
+  if (
+    Math.random() < .012
+  ) {
+    createEnemy();
+  }
+
+}
+
+
+/* GAME LOOP */
+
+function gameLoop() {
+
+  if (!gameRunning) {
+    return;
+  }
+
+  updateSpace();
+
+  drawSpace();
+
+  animationId =
+    requestAnimationFrame(
+      gameLoop
+    );
+
+}
+
+
+/* OPEN NEON SPACE */
+
+function openNeonSpace() {
+
+  hideAllPages();
+
+  document.getElementById("neonSpace")
+    .style.display = "block";
+
+  resizeCanvas();
+
+  restartSpace();
+
+}
+
+
+/* RESTART */
+
+function restartSpace() {
+
+  score = 0;
+
+  document
+    .getElementById("score")
+    .textContent = "0";
+
+  stars = [];
+  enemies = [];
+
+  resizeCanvas();
+
+  player.x =
+    canvas.width / 2;
+
+  player.y =
+    canvas.height - 65;
+
+  gameRunning = true;
+
+  cancelAnimationFrame(
+    animationId
+  );
+
+  gameLoop();
+
+}
+
+
+/* GAME OVER */
+
+function gameOver() {
+
+  gameRunning = false;
+
+  cancelAnimationFrame(
+    animationId
+  );
+
+  setTimeout(
+    function() {
+
+      alert(
+        "💥 GAME OVER!\n\n" +
+        "Din poäng: " +
+        score
+      );
+
+    },
+    50
+  );
+
+}
+
+
+/* BACK */
+
+function backToGames() {
+
+  gameRunning = false;
+
+  cancelAnimationFrame(
+    animationId
+  );
+
+  showGames();
+
+}
+
+
+/* =====================================================
+   EAGLERCRAFT
+===================================================== */
+
+function openEaglercraft() {
+
+  hideAllPages();
+
+  document.getElementById("eaglerPage")
+    .style.display = "block";
+
+}
+
+
+/* START HOME */
+
+showHome();
+
 </script>
+
 
 </body>
 </html>
